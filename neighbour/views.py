@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from .forms import UploadForm,ProfileForm,UpdateUserForm,UpdateUserProfileForm
-from .models import Image,Profile
+from .models import Post,Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.template.context_processors import csrf
@@ -15,9 +15,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def index(request):
-    images = Image.images()
+    post = Post.images()
     users = User.objects.exclude(id=request.user.id)
-    return render(request,'index.html', {"images":images[::1],"users":users})
+    return render(request,'index.html', {"images":post[::1],"users":users})
 
 def post(request):
     if request.method == 'POST':

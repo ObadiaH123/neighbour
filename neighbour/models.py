@@ -6,6 +6,35 @@ from django.core.exceptions import ObjectDoesNotExist
 from cloudinary.models import CloudinaryField 
 
 
+class Neighbourhood(models.Model):
+    name = models.CharField(max_length=55)
+    description = models.TextField(max_length=100)
+    image = CloudinaryField('image') 
+    healthcenter =  models.ForeignKey('healthcenter',on_delete=models.CASCADE)
+    location =  models.ForeignKey('Location',on_delete=models.CASCADE)
+
+    @classmethod
+    def search_by_category(cls,search_term):
+        image_category = cls.objects.filter(name__icontains=search_term)
+        return image_category
+
+
+    def __str__(self):
+        return self.name
+    class Meta:
+        ordering = ['name']
+
+    def save_image(self):
+        self.save()
+
+    @classmethod
+    def get_image(cls):
+        image= cls.objects.get(pk=id)
+        return image
+
+
+
+
 
 
 
@@ -37,7 +66,7 @@ class Post(models.Model):
 
     @classmethod
     def update_image(cls,old,new):
-        cap = Image.objects.filter(caption=old).update(caption=new)
+        cap = Post.objects.filter(caption=old).update(caption=new)
         return cap
 
     def __str__(self):
