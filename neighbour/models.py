@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from cloudinary.models import CloudinaryField 
 
 
-class Neighbourhood(models.Model):
+class Neighbour(models.Model):
     name = models.CharField(max_length=55)
     description = models.TextField(max_length=100)
     image = CloudinaryField('image') 
@@ -51,7 +51,15 @@ class Healthcenter(models.Model):
         self.save()
 
 
+class Business(models.Model):
+    name = models.CharField(max_length =30)
+    email = models.CharField(max_length =30)
+    neighbour=models.ForeignKey('neighbour', on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
 
+    def save_location(self):
+        self.save()
 
 
 class Post(models.Model):
