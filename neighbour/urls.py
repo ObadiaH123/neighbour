@@ -12,9 +12,7 @@ urlpatterns=[
     path('image/',views.post,name='post'),
     path('search/', views.search_profile, name='search'),
     path('user_profile/<username>/', views.user_profile, name='user_profile'),
-    path('unfollow/<to_unfollow>', views.unfollow, name='unfollow'),
-    path('follow/<to_follow>', views.follow, name='follow'),
-    path('image/<id>', views.comment, name='comment'),
+   
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
