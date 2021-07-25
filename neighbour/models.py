@@ -31,6 +31,8 @@ class Neighbourhood(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length =30)
+    hospital =  models.ForeignKey('Hospital',on_delete=models.CASCADE)
+    location =  models.ForeignKey('Location',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
