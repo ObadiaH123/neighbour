@@ -121,3 +121,23 @@ def follow(request, to_follow):
         follow_s.save()
         return redirect('user_profile', user_three_profile.user.username)
 
+@login_required(login_url='/accounts/login/')
+def comment(request, id):
+    image = get_object_or_404(Image, pk=id)
+    comments = image.comment.all()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.photo = image
+            comment.user = request.user.profile
+            comment.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = CommentForm()
+    params = {
+        'image': image,
+        'form': form,
+        'comments':comments,
+    }
+    return render(request, 'post.html', params)
