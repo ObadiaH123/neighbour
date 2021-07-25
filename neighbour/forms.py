@@ -1,11 +1,11 @@
 from django import forms
-from .models import Image,Profile
+from .models import Post,Profile
 from django.contrib.auth.models import User
 
 
 class UploadForm(forms.ModelForm):
     class Meta:
-        model = Image
+        model = Post
         fields = ('image','caption')
 
 class ProfileForm(forms.ModelForm):

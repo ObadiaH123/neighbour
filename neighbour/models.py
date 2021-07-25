@@ -6,7 +6,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from cloudinary.models import CloudinaryField 
 
 
-class Image(models.Model):
+
+
+
+class Post(models.Model):
     user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='images')
     image = CloudinaryField('image')
     # image = models.ImageField(upload_to = 'gallery/', null=True, blank=True)
