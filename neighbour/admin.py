@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Neighbourhood, Location, Hospital
-# Register your models here.
+from .models import Image,Profile
 
-admin.site.register(Neighbourhood)
-admin.site.register(Location)
-admin.site.register(Hospital)
+# Register your models here.
+admin.site.register(Image)
+admin.site.register(Profile)

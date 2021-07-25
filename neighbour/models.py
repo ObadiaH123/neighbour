@@ -1,53 +1,43 @@
 from django.db import models
-
-from django.db import models
-import cloudinary
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.exceptions import ObjectDoesNotExist
 from cloudinary.models import CloudinaryField 
 
-class Neighbourhood(models.Model):
-    name = models.CharField(max_length=55)
-    image = CloudinaryField('image') 
-    hospital =  models.ForeignKey('Hospital',on_delete=models.CASCADE)
-    location =  models.ForeignKey('Location',on_delete=models.CASCADE)
 
-    @classmethod
-    def search_by_category(cls,search_term):
-        image_category = cls.objects.filter(title__icontains=search_term)
-        return image_category
+class Image(models.Model):
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='images')
+    image = CloudinaryField('image')
+    # image = models.ImageField(upload_to = 'gallery/', null=True, blank=True)
+    name = models.CharField(max_length=30)
+    caption = models.CharField(max_length=30)
 
-
-    def __str__(self):
-        return self.name
     class Meta:
-        ordering = ['name']
+        ordering = ["-pk"]
 
-    def save_neighbour(self):
-        self.save()
 
     @classmethod
-    def get_image(cls):
-        image= cls.objects.get(pk=id)
-        return image
+    def images(cls):
+        images = cls.objects.all()
+        return images
 
-class Location(models.Model):
-    name = models.CharField(max_length =30)
-    hospital =  models.ForeignKey('Hospital',on_delete=models.CASCADE)
-    location =  models.ForeignKey('Location',on_delete=models.CASCADE)
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
+    @classmethod
+    def update_image(cls,old,new):
+        cap = Image.objects.filter(caption=old).update(caption=new)
+        return cap
 
     def __str__(self):
         return self.name
 
-    def save_location(self):
-        self.save()
-
-class Hospital(models.Model):
-    name = models.CharField(max_length =30)
-
-    def __str__(self):
-        return self.name
-
-    def save_category(self):
-        self.save()
-
-
-
+    
