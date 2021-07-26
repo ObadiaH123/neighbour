@@ -123,3 +123,10 @@ def neighbour(request):
     else:
         form = NeighbourForm()
     return render(request,'neighbour.html', {"form":form})
+
+def emergency(request):
+    police = Business.objects.get(pk=1)
+    fire= Business.objects.get(pk=2)
+
+
+    return render(request, 'emergency.html', {"police":police, "fire":fire})
