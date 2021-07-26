@@ -15,21 +15,21 @@
 {{ block.super }}
 <div class="row">
     <div class="col-md-4">
-<div class="card border-success mb-3" style="max-width: 18rem;">
+<div class="card border-success m-3 h-100" style="max-width: 18rem;">
     <div class="card-header bg-transparent border-success">{{factory.name}}</div>
     <div class="card-body text-success">
-      <h5 class="card-title">Success card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     
+      <p class="card-text"> <p class="card-text">{{factory.description}}</p>.</p>
     </div>
     <div class="card-footer bg-transparent border-success">{{factory.email}}</div>
   </div>
 </div>
 <div class="col-md-4">
-    <div class="card border-success mb-3" style="max-width: 18rem;">
+    <div class="card border-success mb-3 h-100" style="max-width: 18rem;">
         <div class="card-header bg-transparent border-success">{{hardware.name}}</div>
         <div class="card-body text-success">
-          <h5 class="card-title">Success card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+       
+          <p class="card-text">{{hardware.description}}</p>
         </div>
         <div class="card-footer bg-transparent border-success">{{hardware.email}}</div>
       </div>

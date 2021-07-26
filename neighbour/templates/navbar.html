@@ -9,7 +9,8 @@
 <div class="navbar " style="background-color: rgb(241, 230, 230);">
     <nav class="container-fluid"
         style="border-bottom: solid rgba(182, 176, 176, 0.74) 1px; padding-bottom: 5px; padding-left: 150px;">
-     
+       <button class="btn btn-light"> <a href="{%url 'index'%}" style="color: inherit;">Home</a></button>
+
         <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search' %}">
             <input name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block"
                 placeholder="Search">
@@ -18,9 +19,6 @@
         <span class="pull-right" >
             <div class="col-sm-6 col-md-6" style="display: inline-flex; margin-right: 50px;">
                 {% if user.is_authenticated %}
-                
-                <button class="btn btn-light m-2"> <a href="{%url 'health'%}" style="color: inherit;">Health centers</a></button>
-                <button class="btn btn-light m-2"> <a href="{%url 'business'%}" style="color: inherit;">Business</a></button>
                 <div class="instaicon like" style="display: inline;" class="dropdown">
                     <a href="{% url 'profile' user.username %}" class="dropdown-toggle btn btn-default"
                         data-toggle="dropdown" role="button" aria-expanded="false">Profile</a>
@@ -42,6 +40,10 @@
                     </ul>
                 </div>
 
+                <button class="btn btn-light m-2"> <a href="{%url 'emergency'%}" style="color: inherit;">Emergency</a></button>
+                <button class="btn btn-light m-2"> <a href="{%url 'health'%}" style="color: inherit;">Health centers</a></button>
+                <button class="btn btn-light m-2"> <a href="{%url 'business'%}" style="color: inherit;">Business</a></button>
+                
                 {% else %}
                 <a class='btn btn-default' href="/accounts/login">
                     <p>Login</p>

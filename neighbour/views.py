@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from .forms import NeighbourForm, UploadForm,ProfileForm,UpdateUserForm,UpdateUserProfileForm, Neighbour
-from .models import Post,Profile, Healthcenter, Business
+from .models import Post,Profile, Healthcenter, Business,Emergency
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.template.context_processors import csrf
@@ -125,8 +125,8 @@ def neighbour(request):
     return render(request,'neighbour.html', {"form":form})
 
 def emergency(request):
-    police = Business.objects.get(pk=1)
-    fire= Business.objects.get(pk=2)
+    police = Emergency.objects.get(pk=1)
+    fire= Emergency.objects.get(pk=2)
 
 
     return render(request, 'emergency.html', {"police":police, "fire":fire})

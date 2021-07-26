@@ -60,11 +60,12 @@ class Emergency(models.Model):
     def get_image(cls):
         image= cls.objects.get(pk=id)
         return image
-        
+
 class Business(models.Model):
     name = models.CharField(max_length =30)
     email = models.CharField(max_length =30)
     neighbour=models.ForeignKey('Neighbour', on_delete=models.CASCADE)
+    description=models.TextField(max_length =200, null=True)
     def __str__(self):
         return self.name
 
@@ -109,7 +110,7 @@ class Post(models.Model):
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
-    photo = CloudinaryField('image') 
+    photo = CloudinaryField('image', blank=True) 
     location =  models.CharField(max_length=30, blank=True)
     bio = models.TextField(max_length=300, blank=True)
     name = models.CharField(blank=True, max_length=120)
