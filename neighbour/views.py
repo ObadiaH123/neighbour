@@ -109,4 +109,4 @@ def neighbour(request):
             return redirect('index')
     else:
         form = NeighbourForm()
-    return render(request,'post_image.html', {"form":form})
+    return render(request,'neighbour.html', {"form":form})
