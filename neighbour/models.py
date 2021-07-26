@@ -8,7 +8,6 @@ from cloudinary.models import CloudinaryField
 
 class Neighbour(models.Model):
     name = models.CharField(max_length=55)
-    healthcenter =  models.ForeignKey('Healthcenter',on_delete=models.CASCADE)
     location =  models.CharField(max_length=30)
     @classmethod
     def search_by_category(cls,search_term):
@@ -31,7 +30,7 @@ class Neighbour(models.Model):
 
 
 class Healthcenter(models.Model):
-    name = models.CharField(max_length =30)
+    name = models.CharField(max_length =30, null=True)
 
     def __str__(self):
         return self.name
