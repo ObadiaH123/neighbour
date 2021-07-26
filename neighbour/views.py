@@ -106,10 +106,10 @@ def health(request):
 
 def business(request):
     factory = Business.objects.get(pk=3)
-    hardware= Healthcenter.objects.get(pk=1)
+    hardware= Business.objects.get(pk=1)
 
 
-    return render(request, 'health.html', {"factory":factory, "hardware":hardware})
+    return render(request, 'business.html', {"factory":factory, "hardware":hardware})
 
 def neighbour(request):
     if request.method == 'POST':

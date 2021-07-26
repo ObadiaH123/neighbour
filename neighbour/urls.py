@@ -12,6 +12,7 @@ urlpatterns=[
     path('image/',views.post,name='post'),
     path('neighbour/',views.neighbour,name='neighbour'),
     path('health/',views.health,name='health'),
+    path('business/',views.business,name='business'),
     path('search/', views.search_profile, name='search'),
     path('user_profile/<username>/', views.user_profile, name='user_profile'),
    
