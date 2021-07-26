@@ -20,13 +20,13 @@ class Neighbour(models.Model):
     class Meta:
         ordering = ['name']
 
-    def save_image(self):
+    def save_location(self):
         self.save()
 
     @classmethod
-    def get_image(cls):
-        image= cls.objects.get(pk=id)
-        return image
+    def get_neighbour(cls):
+        neigh= cls.objects.get(pk=id)
+        return neigh
 
 
 class Healthcenter(models.Model):
@@ -35,9 +35,13 @@ class Healthcenter(models.Model):
     def __str__(self):
         return self.name
 
-    def save_category(self):
+    def save_health(self):
         self.save()
 
+    @classmethod
+    def get_image(cls):
+        image= cls.objects.get(pk=id)
+        return image
 
 class Emergency(models.Model):
     name = models.CharField(max_length =30, null=True)
@@ -49,9 +53,14 @@ class Emergency(models.Model):
     def __str__(self):
         return self.name
 
-    def save_category(self):
+    def save_emergency(self):
         self.save()
 
+    @classmethod
+    def get_image(cls):
+        image= cls.objects.get(pk=id)
+        return image
+        
 class Business(models.Model):
     name = models.CharField(max_length =30)
     email = models.CharField(max_length =30)
