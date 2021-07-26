@@ -8,6 +8,11 @@ class UploadForm(forms.ModelForm):
         model = Post
         fields = ('image','caption')
 
+class NeighbourForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('name','location')
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
