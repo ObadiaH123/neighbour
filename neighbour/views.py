@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from .forms import NeighbourForm, UploadForm,ProfileForm,UpdateUserForm,UpdateUserProfileForm, Neighbour
-from .models import Post,Profile, Healthcenter
+from .models import Post,Profile, Healthcenter, Business
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.template.context_processors import csrf
@@ -102,6 +102,14 @@ def health(request):
 
 
     return render(request, 'health.html', {"karen":karen, "kenyatta":kenyatta})
+
+
+def business(request):
+    factory = Business.objects.get(pk=3)
+    hardware= Healthcenter.objects.get(pk=1)
+
+
+    return render(request, 'health.html', {"factory":factory, "hardware":hardware})
 
 def neighbour(request):
     if request.method == 'POST':
