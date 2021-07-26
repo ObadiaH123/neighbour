@@ -31,13 +31,26 @@ class Neighbour(models.Model):
 
 class Healthcenter(models.Model):
     name = models.CharField(max_length =30, null=True)
-
+    image = CloudinaryField('image')
     def __str__(self):
         return self.name
 
     def save_category(self):
         self.save()
 
+
+class Emergency(models.Model):
+    name = models.CharField(max_length =30, null=True)
+    name = models.CharField(max_length =30, null=True) 
+        
+    image = CloudinaryField('image')
+
+
+    def __str__(self):
+        return self.name
+
+    def save_category(self):
+        self.save()
 
 class Business(models.Model):
     name = models.CharField(max_length =30)
