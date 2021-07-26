@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
-from .forms import UploadForm,ProfileForm,UpdateUserForm,UpdateUserProfileForm
+from .forms import NeighbourForm, UploadForm,ProfileForm,UpdateUserForm,UpdateUserProfileForm
 from .models import Post,Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -96,3 +96,17 @@ def user_profile(request, username):
     
     }
     return render(request, 'user_profile.html', params)
+
+
+def neighbour(request):
+    if request.method == 'POST':
+        form = NeighbourForm(request.POST,request.FILES)
+        print(form.errors)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save()
+            return redirect('index')
+    else:
+        form = NeighbourForm()
+    return render(request,'post_image.html', {"form":form})

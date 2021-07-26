@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Profile
+from .models import Post,Profile,Neighbour
 from django.contrib.auth.models import User
 
 
@@ -10,7 +10,7 @@ class UploadForm(forms.ModelForm):
 
 class NeighbourForm(forms.ModelForm):
     class Meta:
-        model = Post
+        model = Neighbour
         fields = ('name','location')
 
 class ProfileForm(forms.ModelForm):
