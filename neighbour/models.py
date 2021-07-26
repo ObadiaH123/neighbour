@@ -9,8 +9,7 @@ from cloudinary.models import CloudinaryField
 class Neighbour(models.Model):
     name = models.CharField(max_length=55)
     healthcenter =  models.ForeignKey('Healthcenter',on_delete=models.CASCADE)
-    location =  models.ForeignKey('Location',on_delete=models.CASCADE)
-
+    location =  models.CharField(max_length=30)
     @classmethod
     def search_by_category(cls,search_term):
         image_category = cls.objects.filter(name__icontains=search_term)
@@ -30,14 +29,6 @@ class Neighbour(models.Model):
         image= cls.objects.get(pk=id)
         return image
 
-class Location(models.Model):
-    name = models.CharField(max_length =30)
-
-    def __str__(self):
-        return self.name
-
-    def save_location(self):
-        self.save()
 
 class Healthcenter(models.Model):
     name = models.CharField(max_length =30)
