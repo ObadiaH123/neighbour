@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
-from .forms import NeighbourForm, UploadForm,ProfileForm,UpdateUserForm,UpdateUserProfileForm
+from .forms import NeighbourForm, UploadForm,ProfileForm,UpdateUserForm,UpdateUserProfileForm, Neighbour
 from .models import Post,Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -10,14 +10,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
-
-
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def index(request):
     post = Post.images()
+    neighbour=Neighbour.objects.all
     users = User.objects.exclude(id=request.user.id)
-    return render(request,'index.html', {"images":post[::1],"users":users})
+    return render(request,'index.html', {"images":post[::1],"users":users, 'neighbour':neighbour})
 
 def post(request):
     if request.method == 'POST':
@@ -103,9 +102,9 @@ def neighbour(request):
         form = NeighbourForm(request.POST,request.FILES)
         print(form.errors)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user.profile
-            post.save()
+            neighbour = form.save(commit=False)
+            neighbour.user = request.user.profile
+            neighbour.save()
             return redirect('index')
     else:
         form = NeighbourForm()

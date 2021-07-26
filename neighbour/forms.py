@@ -16,7 +16,7 @@ class NeighbourForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('photo','name','bio')
+        fields = ('photo','name','bio', )
 
 class UpdateUserForm(forms.ModelForm):
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
@@ -28,4 +28,4 @@ class UpdateUserForm(forms.ModelForm):
 class UpdateUserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'photo', 'bio']
+        fields = ['name', 'photo', 'bio', 'location']

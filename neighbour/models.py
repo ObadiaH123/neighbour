@@ -10,7 +10,7 @@ class Neighbour(models.Model):
     name = models.CharField(max_length=55)
     location =  models.CharField(max_length=30)
     @classmethod
-    def search_by_category(cls,search_term):
+    def search_by_location(cls,search_term):
         image_category = cls.objects.filter(name__icontains=search_term)
         return image_category
 
@@ -88,8 +88,8 @@ class Post(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
     photo = CloudinaryField('image') 
-    # photo = models.ImageField(upload_to = 'gallery/', null=True, blank=True, default='download.jpeg')
-    bio = models.CharField(max_length=300)
+    location =  models.CharField(max_length=30, blank=True)
+    bio = models.TextField(max_length=300, blank=True)
     name = models.CharField(blank=True, max_length=120)
 
     @receiver(post_save, sender=User)
