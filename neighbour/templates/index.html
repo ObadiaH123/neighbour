@@ -16,6 +16,10 @@
 {{ block.super }}
 
 <div class="container" style="font-family: 'Forum', cursive;">
+<p>create a post for other neighbours to see</p>
+    <button class="btn btn-outline-primary m-5"><a href="{%url 'post' %}">
+        Add Post
+    </a></button> 
     <div class="row">
         <div class="col-7">
             {% for image in images %}
