@@ -8,9 +8,7 @@ from cloudinary.models import CloudinaryField
 
 class Neighbour(models.Model):
     name = models.CharField(max_length=55)
-    description = models.TextField(max_length=100)
-    image = CloudinaryField('image') 
-    healthcenter =  models.ForeignKey('healthcenter',on_delete=models.CASCADE)
+    healthcenter =  models.ForeignKey('Healthcenter',on_delete=models.CASCADE)
     location =  models.ForeignKey('Location',on_delete=models.CASCADE)
 
     @classmethod
@@ -54,7 +52,7 @@ class Healthcenter(models.Model):
 class Business(models.Model):
     name = models.CharField(max_length =30)
     email = models.CharField(max_length =30)
-    neighbour=models.ForeignKey('neighbour', on_delete=models.CASCADE)
+    neighbour=models.ForeignKey('Neighbour', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 

@@ -25,25 +25,12 @@
                         alt="{{image.user.user.username}}" width="35" height="35">
                     <a href="{% url 'profile' image.user.user.username  %}" class="mt-4 user" style="color: blue; font-weight: bold;">{{image.user.user.username|title}}</a>
                 </div>
-                <div class="card-body">
-                    <a href="{% url 'comment' image.id %}"><img src="{{ image.image_url }}" class="card-img-top"
-                            alt="..." height="320px" style="width: 100%;"></a>
-                    <form action="{% url 'index' %}" method="post">
-                        {% csrf_token %}
-       
-                    </form>
-                    <!-- <span>{{ total_likes }} like{{ total_likes | pluralize}}</span> -->
-                  
-                    <a href="{% url 'profile' image.user.user.username  %}" class="mt-4 user">
-                        <p style="color: black; font-weight: bold;">{{image.user.user.username|title}}</p>
-                    </a>
-                    <p class="card-text"><b>Caption:</b> {{ image.caption }}</p>
-                </div>
+
             </div>
             {% endfor %}
         </div>
         <div class="col-4" style="margin-top: 20px;">
-            <h4 style="color:inherit">People you may know</h4>
+            <h4 style="color:inherit">Neighbours:</h4>
             {% for user in users %}
             <div class="container">
                 <div class="row">
