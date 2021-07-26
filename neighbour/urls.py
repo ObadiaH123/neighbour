@@ -11,6 +11,7 @@ urlpatterns=[
     path('edit/profile/',views.update_profile,name='update'),
     path('image/',views.post,name='post'),
     path('neighbour/',views.neighbour,name='neighbour'),
+    path('health/',views.health,name='health'),
     path('search/', views.search_profile, name='search'),
     path('user_profile/<username>/', views.user_profile, name='user_profile'),
    
